@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { Plus, Search, ChevronDown, ChevronRight, Trash2 } from "lucide-react"
+import { Plus, Search, ChevronDown, ChevronRight, Trash2, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Filter } from "lucide-react"
 
@@ -82,27 +82,46 @@ export const FilterDropdown = ({ onFilterChange }: { onFilterChange: (filters: s
     }
   }
 
+  // Add clear all filters function
+  const clearAllFilters = () => {
+    setSelectedValues([])
+    onFilterChange([]) // This will clear all filters and show all data
+  }
+
   return (
-    <div className="relative w-[320px]">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center gap-2 bg-white border border-[Blackopacity/8%] rounded-[12px] p-[8px]"
-      >
-        <div className="flex items-center justify-between gap-">
-          <div className="flex items-center gap-2">
-            <Filter size={14} className="text-gray-500"/>
-            <span className="text-sm font-normal">Filter</span>
+    <div className="relative">
+      <div className="flex items-center gap-2">
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="flex-1 w-[130px] flex items-center gap-2 bg-white border border-[Blackopacity/8%] rounded-[12px] p-[12px]"
+        >
+          <div className="flex items-center justify-between w-full gap-3">
+            <div className="flex items-center gap-2">
+              <Filter size={14} className="text-gray-500"/>
+              <span className="text-sm text-gray-700 font-normal">Filter</span>
+            </div>
+            {selectedValues.length > 0 && (
+              <span className="px-2 py-1 text-xs font-semibold rounded-full bg-[#E3FA99] text-[#1C1C1C]">
+                {selectedValues.length}
+              </span>
+            )}
           </div>
-          {selectedValues.length > 0 && (
-            <span className="px-2 py-1 text-xs font-semibold rounded-full bg-[#E3FA99] text-[#1C1C1C]">
-              {selectedValues.length}
-            </span>
-          )}
-        </div>
-      </button>
+        </button>
+
+        {/* Add clear all button */}
+        {selectedValues.length > 0 && (
+          <button
+            onClick={clearAllFilters}
+            className="p-2 hover:bg-gray-100 rounded-lg text-gray-500 hover:text-red-500 transition-colors"
+            title="Clear all filters"
+          >
+            <X size={16} />
+          </button>
+        )}
+      </div>
 
       {isOpen && (
-        <div className="absolute z-50 top-[100%] left-0 w-full mt-1">
+        <div className="absolute z-50 top-[100%] left-0 w-[320] mt-1">
           <div className="bg-white border border-[Blackopacity/8%] rounded-[12px] shadow-lg p-2">
             <div className="flex items-center w-full gap-3 p-[12px] text-[#292929] bg-[#F3F9EB] rounded-lg shadow-[0px_2px_8px_0px_rgba(99,121,168,0.08)] border border-[rgba(0,0,0,0.12)]">
               <Plus size={18} className="text-[#1C1C1C] bg-[#E3FA99] rounded-sm border border-black/6" />

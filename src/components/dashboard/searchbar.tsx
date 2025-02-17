@@ -7,12 +7,12 @@ interface SearchBarProps {
 
 export const SearchBar: React.FC<SearchBarProps> = ({ value, onChange }) => {
   return (
-    <div className="mb-4 relative">
-      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+    <div className="w-full p-[12px] text-sm border focus:outline-none border-[Blackopacity/8%] rounded-[12px] focus:border-[#afd246] flex gap-3">
+      <Search className="text-gray-400" size={20} />
       <input
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full pl-10 pr-4 py-2 border border-gray-300 focus:outline-none rounded-lg focus:border-[#e2fa99]"
+        className="focus:outline-none w-full"
         placeholder="Search all columns..."
       />
     </div>

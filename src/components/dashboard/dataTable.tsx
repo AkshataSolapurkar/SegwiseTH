@@ -139,10 +139,10 @@ export const DataTable: React.FC<DataTableProps> = ({ data }) => {
   }
 
   return (
-    <div className="w-full z-10 py-5">
+    <div className="w-full z-10">
       <div className="flex gap-4 mb-4">
         <FilterDropdown onFilterChange={handleFilterChange} />
-        <div className="flex-1">
+        <div className="w-full">
           <SearchBar value={globalFilter} onChange={setGlobalFilter} />
         </div>
       </div>
@@ -152,7 +152,7 @@ export const DataTable: React.FC<DataTableProps> = ({ data }) => {
         <div className="overflow-x-auto">
           {/* The inner container allows vertical scrolling */}
           <div
-            className="overflow-y-auto h-[75vh]"
+            className="overflow-y-auto h-[70vh]"
         
           >
             {/* The table has a minimum width so that on small screens it overflows horizontally */}

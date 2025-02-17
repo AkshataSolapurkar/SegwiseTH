@@ -9,11 +9,13 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-background">
+    <div className="relative bg-background">
       <Sidebar />
-      <div className="md:ml-20 overflow-hidden">
-        <main className="px-4 py-3 md:p-8">
-        <Header/>
+      <div className="relative md:ml-20 overflow-hidden">
+        <main className="px-4 pt-3 md:p-8">
+          <div className="md:ml-0 ml-12">
+            <Header/>
+          </div>
           {children}
         </main>
       </div>
