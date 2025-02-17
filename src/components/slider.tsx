@@ -31,8 +31,8 @@ export function Sidebar() {
 
   useEffect(() => {
     const checkScreenSize = () => {
-      setIsMobile(window.innerWidth < 1024);
-      setIsOpen(window.innerWidth >= 1024);
+      setIsMobile(window.innerWidth < 768); // Adjusted for smaller screens
+      setIsOpen(window.innerWidth >= 768); // Sidebar open by default on larger screens
     };
 
     checkScreenSize();
@@ -49,7 +49,7 @@ export function Sidebar() {
       <Button
         variant="ghost"
         size="icon"
-        className="fixed top-4 left-4 z-50 lg:hidden text-[#7f7f7f] hover:text-[#6a7554]"
+        className="fixed top-4 left-4 z-50 md:hidden text-[#7f7f7f] hover:text-[#6a7554]"
         onClick={toggleSidebar}
       >
         <Menu className="h-6 w-6" />
@@ -64,15 +64,15 @@ export function Sidebar() {
 
       <div
         className={cn(
-          "fixed top-0 left-0 h-full bg-[#222222] px-4 py-8 border-r border-[#2b2b2b] z-50",
+          "fixed flex flex-col justify-start top-0 left-0 h-full bg-[#222222] lg:px-4 py-8 border-r border-[#2b2b2b] z-50",
           "transition-all duration-300",
-          isMobile ? (isOpen ? "w-64" : "w-0") : "",
-          "lg:w-20"
+          isMobile ? (isOpen ? "w-16" : "w-0") : "w-64", // Adjusted width for responsiveness
+          "md:w-20"
         )}
       >
         <Image src={logo} className="mx-auto" alt="logo" width={40} height={40}/>
         <ScrollArea className="h-full">
-          <div className="flex-col flex gap-5 py-4">
+          <div className="flex-col flex gap-5 lg:px-0 px-2 md:px-3 py-4">
             {menuItems.map(({ icon: Icon, label, href }) => (
               <Link key={href} href={href}>
                 <Button
@@ -88,9 +88,7 @@ export function Sidebar() {
                   title={label}
                 >
                   <Icon className="h-5 w-5" />
-                  {isMobile && isOpen && (
-                    <span className="ml-3">{label}</span>
-                  )}
+                  
                 </Button>
               </Link>
             ))}

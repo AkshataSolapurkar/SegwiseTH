@@ -6,7 +6,7 @@ import Avtar from "../../public/avtar2.png";
 
 const header = () => {
   return (
-    <div className="space-y-6 w-full">
+    <div className="w-full">
         <div className="flex gap-5 items-center">
         <Image 
           src={Avtar} 

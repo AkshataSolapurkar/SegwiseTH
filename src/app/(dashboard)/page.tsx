@@ -3,9 +3,10 @@
 import React, { useEffect, useState } from "react";
 import { DataTable } from "@/components/dashboard/dataTable";
 import Papa from "papaparse";
+import { FilterDropdown } from "@/components/dashboard/filterbox";
 
 export default function App() {
-  const [csvData, setCsvData] = useState([]);
+  const [csvData, setCsvData] = useState([] as any[]);
 
   useEffect(() => {
     const fetchCsv = async () => {
@@ -26,12 +27,12 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
-      <div className="max-w-7xl mx-auto">
-        <h1 className="text-2xl font-bold text-gray-900 mb-6">
-          Ad Performance Dashboard
-        </h1>
-        <DataTable data={csvData} />
+
+    <div className="">
+      <div className="lg:max-w-7xl mx-auto">
+        <div className="overflow-x-auto mt-4">
+          <DataTable data={csvData} />
+        </div>
       </div>
     </div>
   );
